@@ -1,5 +1,6 @@
 # Raising Dependency Visiblity
 
+Associated medium article can be found [here](https://rushrs.medium.com/increasing-visibility-for-code-dependencies-1238efb97df6) - talking about how i've implemented these practices at RVU 
 ## Usage
 
 You can copy the workflows found in `dependency-visibility/examples` to your .github/workflows folder within your repo. You need to update the `create-jira-ticket-on-pr-open.yaml` on lines `20` and `21` to include your JIRA Project name and an appropriate JIRA Issue type respectively.
