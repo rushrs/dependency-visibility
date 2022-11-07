@@ -1,0 +1,14 @@
+on:
+  pull_request:
+    types: [ closed ]
+
+name: Transition Ticket on PR Closure
+
+jobs:
+  close-jira-ticket:
+    if: ${{ contains(github.event.pull_request.labels.*.name,  'dependencies') }}
+    uses: rushrs/dependency-visibility/reusable-workflows/ticket-o-matic-close.yaml@main
+    secrets:
+      jira_base_url: ${{ secrets.JIRA_BASE_URL }}
+      jira_user_email: ${{ secrets.JIRA_USER_EMAIL }}
+      jira_api_token: ${{ secrets.JIRA_API_TOKEN }}

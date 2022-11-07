@@ -1,0 +1,57 @@
+on:
+  workflow_call:
+    inputs:
+      repository:
+        description: 'The caller workflows owner/repo'
+        required: true
+        type: string
+      pr_title:
+        description: 'The title to call the JIRA Ticker'
+        required: true
+        type: string
+      jira_project:
+        description: 'The JIRA project id.'
+        required: true
+        type: string
+      jira_issue_type:
+        description: 'The JIRA Issue Type to create.'
+        required: true
+        type: string
+      jira_summary:
+        description: 'The summary for the created issue.'
+        required: true
+        type: string
+      jira_description:
+        description: 'The description for the created issue.'
+        required: true
+        type: string
+    secrets:
+      jira_base_url:
+        required: true
+      jira_user_email:
+        required: true
+      jira_api_token:
+        required: true
+
+name: Update PR with JIRA Ticket ID
+jobs:
+  update-pr:
+    permissions:
+      pull-requests: write
+    runs-on: ubuntu-latest
+    steps:
+      - name: airship-aio-ticketing
+        uses: uswitch/airship-aio-ticketing@v1.0.16
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          JIRA_BASE_URL: ${{ secrets.jira_base_url }}
+          JIRA_USER_EMAIL: ${{ secrets.jira_user_email }}
+          JIRA_API_TOKEN: ${{ secrets.jira_api_token }}
+        with:
+          repository: ${{ inputs.repository }}
+          pr_title: ${{ inputs.pr_title }}
+          jira_project: ${{ inputs.jira_project}}
+          jira_issue_type: ${{ inputs.jira_issue_type}}
+          jira_summary: ${{ inputs.jira_summary }}
+          jira_description: ${{ inputs.jira_description }}
+

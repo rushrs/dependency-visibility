@@ -1,0 +1,23 @@
+on:
+  pull_request:
+    types: [ labeled ]
+
+name: Update PR with JIRA Ticket ID
+
+jobs:
+  update-pr:
+    if: ${{ github.event.label.name == 'dependencies' }}
+    permissions:
+      pull-requests: write
+    uses: rushrs/dependency-visibility/reusable-workflows/ticket-o-matic.yaml@main
+    secrets:
+      jira_base_url: ${{ secrets.JIRA_BASE_URL }}
+      jira_user_email: ${{ secrets.JIRA_USER_EMAIL }}
+      jira_api_token: ${{ secrets.JIRA_API_TOKEN }}
+    with:
+      repository: ${{ github.repository }}
+      pr_title: ${{ github.event.pull_request.title }}
+      jira_project: "PROJECT_NAME_HERE"
+      jira_issue_type: "ISSUE_TYPE_HERE"
+      jira_summary: "[${{ github.repository }}] ${{ github.event.pull_request.title }}"
+      jira_description: ${{ github.event.pull_request.body }}
