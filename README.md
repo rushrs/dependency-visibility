@@ -1,4 +1,4 @@
-# Raising Dependency Visiblity
+# Increasing Dependency Visiblity
 
 Associated medium article can be found [here](https://rushrs.medium.com/increasing-visibility-for-code-dependencies-1238efb97df6) - talking about how i've implemented these practices at RVU 
 ## Usage
