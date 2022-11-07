@@ -2,7 +2,7 @@
 
 ## Usage
 
-You can copy the workflows found in `dependency-visibility/examples` to your .github/workflows folder within your repo. You need to update the `create-jira-ticket-on-pr-open.yaml` on lines 20 and 21 to include your Project name and an appropraite issue type respectively.
+You can copy the workflows found in `dependency-visibility/examples` to your .github/workflows folder within your repo. You need to update the `create-jira-ticket-on-pr-open.yaml` on lines `20` and `21` to include your JIRA Project name and an appropriate JIRA Issue type respectively.
 
 These actions require the following secrets set on the github repository.
 - JIRA_BASE_URL
